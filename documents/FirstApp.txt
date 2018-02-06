@@ -8,6 +8,12 @@
     Dynamically allocation of classes. [Use of Interface]
     *** Dependency Injection + Loosely-Coupled
 
+- Beans:
+    Beans[@Component] + Dependencies[@Autowired] + Usage of Beans[Application Context]
+    Basically a TP-sort order of creating classes controlled by Beans
+
+ConfigurableApplicationContext applicationContext = SpringApplication.run(FirstSpringProjectApplication.class, args);
+BinarySearchExample binarySearch = applicationContext.getBean(BinarySearchExample.class);
 
 
 
