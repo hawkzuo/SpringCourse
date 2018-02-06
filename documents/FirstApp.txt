@@ -1,0 +1,16 @@
+- About Maven
+    Like BB, a light-weighted dependency system for tools like spring / mockito / log4j ...
+    Explicit installation of Maven is not required for using Idea
+    Instead, create a pom.xml file and import it via Idea to auto-config dependencies on Maven
+    The IDE will automatically download Maven library files to folder
+        ~/.m2
+- Design Patterns:
+    Dynamically allocation of classes. [Use of Interface]
+    *** Dependency Injection + Loosely-Coupled
+
+
+
+
+
+
+

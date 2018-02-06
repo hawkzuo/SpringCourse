@@ -1,0 +1,41 @@
+[Dependency Injection]
+Reason for Spring Framework:
+Java demands initialization with concrete class.
+
+    // Tight-way programming: Bad
+    public class ComplexBusinessService {
+        SortAlg sortAlg = new BubbleSortAlg();
+    }
+    // Loose-way programming: Good
+    public class ComplexBusinessService {
+
+        SortAlg sortAlg; //= new BubbleSortAlg();
+        public ComplexBusinessService(sortingAlgorithm) {
+            this.sortAlg = sortingAlgorithm;
+        }
+
+    }
+    public class BubbleSortAlg implements SortAlg {}
+
+    // Somewhere else these codes to instantiate the Service
+    SortAlg sortAlg = new BubbleSortAlg();
+    ComplexBusinessService service = new ComplexBusinessService(sortAlg);
+
+Settings:
+    Beans: objects managed by the spring framework
+    Autowire: the process of finding dependency objects by the spring
+    Dependency Injection:
+    Inversion Of Control & IoC container:
+    Application Context:
+
+v1: Use keyword "@Component" "@Autowired" for dependency injection
+    @Component
+    public class ComplexBusinessService {
+        @Autowired
+        SortAlg sortAlg ;
+    }
+    @Component
+    public class BubbleSortAlg implements SortAlg {}
+v2: Use explicit xml file to construct dependency structure
+
+Prerequisites: [None]
