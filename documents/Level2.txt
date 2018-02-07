@@ -1,0 +1,36 @@
+Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-depth
+
+- Autowire:
+    2 instances of SortAlgorithm, spring inject by type.
+    - S1: Assign @Primary to 1 instance of SortAlgorithm
+    - S2: Autowiring by name
+        private final SortAlgorithm bubbleSortAlgorithm;
+    - S3: @Qualifier assign "Qualifier" to each instance, then use syntax to assign
+        @Component
+        @Qualifier("quick")
+        public class QuickSortAlgorithm implements SortAlgorithm {}
+
+        public BinarySearchExample(@Qualifier("quick") SortAlgorithm sortAlgorithm) {
+            this.sortAlgorithm = sortAlgorithm;
+        }
+
+- Bean Scopes:
+    Add notation @Scope() to Components
+    Default scope is Singleton
+    singleton - One at all time
+    prototype - Newly creating each time
+    Given PersonDao -> JdbcConnection:
+        prototype -> singleton => Each prototype has same dependency
+        singleton -> prototype => Each singleton still has same dependency
+    To avoid this behavior, add Proxy to @Scope for Dependencies
+        @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    By doing this, each time the class JdbcConnection is used, a new class is generated. So if calling twice of:
+        personDao.getJdbcConnection()
+    There will be two distinct JdbcConnection classes.
+
+- SpringBootApplication:
+    By default, only scan the package that the application is within.
+    "Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException:
+        No qualifying bean of type 'edu.tamu.amos.spring.componentscan.dao.PersonDao' available"
+    To add new scanning packages, use @ComponentScan:
+        @ComponentScan(basePackages = "edu.tamu.amos.spring")

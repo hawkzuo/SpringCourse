@@ -11,12 +11,23 @@
 - Beans:
     Beans[@Component] + Dependencies[@Autowired] + Usage of Beans[Application Context]
     Basically a TP-sort order of creating classes controlled by Beans
-
+    No multiple @Component should be assigned to the same type, use techniques
+    Support [Constructor/Setter/Field] Injection on Beans
+// Accessing a Bean:
 ConfigurableApplicationContext applicationContext = SpringApplication.run(FirstSpringProjectApplication.class, args);
 BinarySearchExample binarySearch = applicationContext.getBean(BinarySearchExample.class);
 
+- General:
+    JDBC Unit-Test Web-Integration =>   [Testable NoPlumbing Flexible Updating] => Popular
 
+- Projects:
+    Spring Boot[build system] / Cloud / Data / Integration[App Integration]
+    Spring Batch[Batch App] / Security / ......
 
-
+- Features:
+    - Easily Unit Test [JUnit + Mockito]
+    - No Plumbing Code [Less Explicit Try/Catch]
+    - Flexible Structure
+    - Updating consistently
 
 

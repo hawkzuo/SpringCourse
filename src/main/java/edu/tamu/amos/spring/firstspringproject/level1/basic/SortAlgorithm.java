@@ -1,4 +1,4 @@
-package edu.tamu.amos.spring.firstspringproject.level1.sorting;
+package edu.tamu.amos.spring.firstspringproject.level1.basic;
 
 /*
  * Created by Amos on 2/5/18.

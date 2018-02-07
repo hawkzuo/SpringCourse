@@ -1,12 +1,14 @@
-package edu.tamu.amos.spring.firstspringproject.level1.sorting;
+package edu.tamu.amos.spring.firstspringproject.level1.basic;
 
 /*
  * Created by Amos on 2/5/18.
  */
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+@Qualifier("bubble")
 public class BubbleSortAlgorithm implements SortAlgorithm {
 
     @Override
