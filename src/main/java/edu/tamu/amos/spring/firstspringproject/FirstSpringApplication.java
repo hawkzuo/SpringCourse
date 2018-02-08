@@ -4,17 +4,32 @@ import edu.tamu.amos.spring.firstspringproject.level1.BinarySearchExample;
 import edu.tamu.amos.spring.componentscan.dao.PersonDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+//@SpringBootApplication
+@Configuration
 @ComponentScan(basePackages = "edu.tamu.amos.spring")
-public class FirstSpringProjectApplication {
+public class FirstSpringApplication {
 
 
-	private static final Logger logger = LogManager.getLogger(FirstSpringProjectApplication.class);
+	private static final Logger logger = LogManager.getLogger(FirstSpringApplication.class);
+
+	@PostConstruct
+	public void postConstruct() {
+		logger.info("postConstruct");
+	}
+	@PreDestroy
+	public void preDestroy() {
+		logger.info("preDestroy");
+	}
 
 	public static void main(String[] args) {
 
@@ -34,13 +49,15 @@ public class FirstSpringProjectApplication {
 //		SpringApplication.run(FirstSpringProjectApplication.class, args);
 
 		// Access Spring configured objects [via AppContext] :
-		ConfigurableApplicationContext applicationContext = SpringApplication.run(FirstSpringProjectApplication.class, args);
-		BinarySearchExample binarySearch = applicationContext.getBean(BinarySearchExample.class);
+//		ConfigurableApplicationContext applicationContext = SpringApplication.run(FirstSpringProjectApplication.class, args);
+        ApplicationContext applicationContext = new AnnotationConfigApplicationContext(FirstSpringApplication.class);
+
+        BinarySearchExample binarySearch = applicationContext.getBean(BinarySearchExample.class);
 		BinarySearchExample binarySearch2 = applicationContext.getBean(BinarySearchExample.class);
 		int dummyResult = binarySearch.binarySearch(new int[]{5,4,3,2,1}, 3);
-//        System.out.println(dummyResult);
-//        System.out.println(binarySearch);
-//        System.out.println(binarySearch2);
+        System.out.println(dummyResult);
+        System.out.println(binarySearch);
+        System.out.println(binarySearch2);
 
         PersonDao personDao = applicationContext.getBean(PersonDao.class);
         PersonDao personDao1 = applicationContext.getBean(PersonDao.class);

@@ -28,9 +28,41 @@ Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-de
         personDao.getJdbcConnection()
     There will be two distinct JdbcConnection classes.
 
+- Bean Lifecycle:
+    @PreConstruct @PreDestroy callbacks
+        javax.annotation.PostConstruct;
+        javax.annotation.PreDestroy;
+
 - SpringBootApplication:
     By default, only scan the package that the application is within.
     "Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException:
         No qualifying bean of type 'edu.tamu.amos.spring.componentscan.dao.PersonDao' available"
     To add new scanning packages, use @ComponentScan:
         @ComponentScan(basePackages = "edu.tamu.amos.spring")
+    To disable, remove "spring-boot-starter" from pom.xml:
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		This will make "SpringApplication" "SpringBootApplication" invalid
+    Instead, add "spring-core" and "spring-context" to pom.xml
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+    By now this will give strong warning on "Application context not configured for this file" on Application.java
+    For logger it will throw an error:
+        "ERROR StatusLogger No log4j2 configuration file found. Using default configuration: logging only errors to the console.
+    Set system property 'log4j2.debug' to show Log4j2 internal initialization logging."
+
+- XML definition
+
+
+
+
+
+
