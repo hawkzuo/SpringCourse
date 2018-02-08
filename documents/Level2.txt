@@ -78,7 +78,19 @@ Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-de
         <constructor-arg ref="{id of class}"/>
     Combination of XML and Annotation Context => Use context:component-scan
 
-- Sample log4j.properties file:
+- Choose between BeanFactory and Application Context
+    - BeanFactory[Memory-Limited-Situations]
+    - Application Context [More Features except for BeanFactory] [Recommended]
+- Choose between @Component @Repository @Service @Controller
+    - All can be annotated as @Component
+    - @Repository focuses on "Encapsulating storage/retrieval/search behaviors from DB "
+    - @Service focuses on Service level [Directly answers to an API, for example]
+    - @Controller is in the concept of MVC [optional for spring-based service]
+
+- Setup Properties from file
+
+
+Sample log4j.properties file:
     # Define the root logger with appender file
     log4j.rootLogger = DEBUG, FILE
 

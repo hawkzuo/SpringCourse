@@ -15,7 +15,7 @@
 
     <!--Load these objects here-->
     <context:component-scan base-package="edu.tamu.amos.spring.firstspringproject.level1"/>
-    
+
     <!--Or explicitly define beans here-->
     <!--<bean id="binarySearchExample" class="edu.tamu.amos.spring.firstspringproject.level1.BinarySearchExample">-->
         <!--<constructor-arg ref="quickSortAlgorithm"/>-->
