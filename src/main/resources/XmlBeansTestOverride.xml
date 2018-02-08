@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <import resource="classpath*:XmlBeans.xml"/>
+    <!-- After import, overriding or adding new beans for testing purposes -->
+
+
+    <!--<bean id = "xmlPersonDao" class = "edu.tamu.amos.spring.xml.XmlPersonDao">-->
+        <!--<constructor-arg ref="xmlJdbcConnection" />-->
+    <!--</bean>-->
+
+    <!--<bean id="xmlJdbcConnection" class="edu.tamu.amos.spring.xml.XmlJdbcConnection"/>-->
+
+    <!--&lt;!&ndash;Load these objects here&ndash;&gt;-->
+    <!--<context:component-scan base-package="edu.tamu.amos.spring.firstspringproject.level1"/>-->
+
+    <!--Or explicitly define beans here-->
+    <!--<bean id="binarySearchExample" class="edu.tamu.amos.spring.firstspringproject.level1.BinarySearchExample">-->
+        <!--<constructor-arg ref="quickSortAlgorithm"/>-->
+    <!--</bean>-->
+    <!--<bean id="quickSortAlgorithm" class="edu.tamu.amos.spring.firstspringproject.level1.basic.QuickSortAlgorithm"/>-->
+    <!--<bean id="bubbleSortAlgorithm" class="edu.tamu.amos.spring.firstspringproject.level1.basic.BubbleSortAlgorithm"/>-->
+
+</beans>

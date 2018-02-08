@@ -1,6 +1,27 @@
 Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-depth
 
-Testing in Spring
+Testing in Java
+    Scope:
+        Unit -> Behavior -> Integration[Beta] -> Production
+    JUnit + Mockito:
+        JUnit define some helpers, and Mockito is like Ruby Rspec
+        Mockito supports mocking behaviors
+            [allow ... to ... <=> when().thenXXX();
+             expect ... to ...<=> assertXXX(msg, expected, real)]
+
+Test in Spring:
+    Steps:
+        - Load the Context via ContextConfiguration [classes = ] [location = ]
+        - Access wire @Autowired
+        - @RunWith(SpringRunner.class)
+    Rule for Mockito:
+        - Used for the Unit Test.
+        - Do not mock the methods / fields of class that is being tested.
+        - Only mock those data flows in.
+    Performance:
+        Mockito is faster than JUnit
+        
+Libraries:
     TODO: Libraries[playJson; slf4j; JUnit; Mockito]
     slf4j:
         <dependency>
@@ -16,22 +37,9 @@ Testing in Spring
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>
-    Scope:
-        Unit -> Behavior -> Integration[Beta] -> Production
-    JUnit + Mockito:
-        JUnit define some helpers, and Mockito is like Ruby Rspec
-        Mockito supports mocking behaviors
-            [allow ... to ... <=> when().thenXXX();
-             expect ... to ...<=> assertXXX(msg, expected, real)]
-
-
-
-
-
-
-
-
-
-
-
-
+    Mockito
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
