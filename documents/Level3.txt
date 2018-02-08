@@ -1,0 +1,37 @@
+Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-depth
+
+Testing in Spring
+    TODO: Libraries[playJson; slf4j; JUnit; Mockito]
+    slf4j:
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+    JUnit:
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+    Scope:
+        Unit -> Behavior -> Integration[Beta] -> Production
+    JUnit + Mockito:
+        JUnit define some helpers, and Mockito is like Ruby Rspec
+        Mockito supports mocking behaviors
+            [allow ... to ... <=> when().thenXXX();
+             expect ... to ...<=> assertXXX(msg, expected, real)]
+
+
+
+
+
+
+
+
+
+
+
+
