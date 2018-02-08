@@ -4,6 +4,6 @@ package edu.tamu.amos.spring.xml;
  * Created by Amos on 2018/2/7.
  */
 
-public class XMLJdbcConnection {
+public class XmlJdbcConnection {
     // Will generate different instances on each creation
 }

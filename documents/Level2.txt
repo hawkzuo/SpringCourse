@@ -14,7 +14,10 @@ Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-de
             this.sortAlgorithm = sortAlgorithm;
         }
 
-- Bean Scopes:
+- Bean:
+    Beans[@Component] + Dependencies[@Autowired] + Usage of Beans[Application Context]
+    Support [Constructor/Setter/Field] Injection on Beans
+    {Basically a TP-sort order of creating classes controlled by Beans}
     Add notation @Scope() to Components
     Default scope is Singleton
     singleton - One at all time
@@ -60,9 +63,40 @@ Link: https://github.com/hawkzuo/spring-master-class/tree/master/01-spring-in-de
     Set system property 'log4j2.debug' to show Log4j2 internal initialization logging."
 
 - XML definition
+    Same as learned in AWS.
+    However, the default search path for XML files are at '/resources' folder. [TODO: figure out why]
+    Use *.xml file to define application structure. Each Component is a "bean"
+    A bean has the following attributes.
+        "id"[Unique Identifier]
+        "class"[Class Reference]
+        "lazy-init"[True/False]
+        "init-method"[Initialization Callback]
+        "destroy-method"[Destruction Callback]
+        "scope" [singleton prototype request session global-session]
+    A bean accepts <constructor-arg> <properties>
+        <property name = "" value = ""/>
+        <constructor-arg ref="{id of class}"/>
+    Combination of XML and Annotation Context => Use context:component-scan
 
+- Sample log4j.properties file:
+    # Define the root logger with appender file
+    log4j.rootLogger = DEBUG, FILE
 
+    # Define the file appender
+    log4j.appender.FILE=org.apache.log4j.FileAppender
+    # Set the name of the file
+    log4j.appender.FILE.File=C:\\log.out
 
+    # Set the immediate flush to true (default)
+    log4j.appender.FILE.ImmediateFlush=true
 
+    # Set the threshold to debug mode
+    log4j.appender.FILE.Threshold=debug
 
+    # Set the append to false, overwrite
+    log4j.appender.FILE.Append=false
+
+    # Define the layout for file appender
+    log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
+    log4j.appender.FILE.layout.conversionPattern=%m%n
 
