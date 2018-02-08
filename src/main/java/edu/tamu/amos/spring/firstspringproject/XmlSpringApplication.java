@@ -2,8 +2,9 @@ package edu.tamu.amos.spring.firstspringproject;
 
 import edu.tamu.amos.spring.firstspringproject.level1.BinarySearchExample;
 import edu.tamu.amos.spring.xml.XmlPersonDao;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,7 +16,7 @@ import javax.annotation.PreDestroy;
 public class XmlSpringApplication {
 
 
-	private static final Logger logger = LogManager.getLogger(XmlSpringApplication.class);
+	private static final Logger logger = LoggerFactory.getLogger(XmlSpringApplication.class);
 
 	@PostConstruct
 	public void postConstruct() {
@@ -42,7 +43,7 @@ public class XmlSpringApplication {
 		XmlPersonDao personDao = applicationContext.getBean(XmlPersonDao.class);
 		XmlPersonDao personDao1 = applicationContext.getBean(XmlPersonDao.class);
 
-		logger.info("PersionDao: {}, JDBC: {}", personDao, personDao.getXmlJdbcConnection());
+		logger.info("PersonDao: {}, JDBC: {}", personDao, personDao.getXmlJdbcConnection());
 		logger.info("PersonDao1: {}, JDBC: {}", personDao1, personDao1.getXmlJdbcConnection());
 
 

@@ -2,10 +2,12 @@ package edu.tamu.amos.spring.firstspringproject;
 
 import edu.tamu.amos.spring.firstspringproject.level1.BinarySearchExample;
 import edu.tamu.amos.spring.componentscan.dao.PersonDao;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 //import org.springframework.boot.SpringApplication;
 //import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,7 +22,7 @@ import javax.annotation.PreDestroy;
 public class FirstSpringApplication {
 
 
-	private static final Logger logger = LogManager.getLogger(FirstSpringApplication.class);
+	private static final Logger logger = LoggerFactory.getLogger(FirstSpringApplication.class);
 
 	@PostConstruct
 	public void postConstruct() {
