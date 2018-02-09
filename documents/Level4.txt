@@ -1,0 +1,48 @@
+Spring Boot
+    A simple build system especially for Micro-services
+    Features:
+        No code generation
+        Neither application server nor web server
+
+Spring Boot
+    Spring Boot will use autoconfigure package to configure interfaces to different functionality,
+    which is implemented in spring-boot-autoconfigure.jar.
+    Among the configurations, some important ones are:
+        org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+        org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
+        org.springframework.boot.autoconfigure.MessageSourceAutoConfiguration,\
+        org.springframework.boot.autoconfigure.PropertyPlaceholderAutoConfiguration,\
+        org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration,\
+        org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,\
+        org.springframework.boot.autoconfigure.jdbc.JdbcTemplateAutoConfiguration,\
+        org.springframework.boot.autoconfigure.jdbc.JndiDataSourceAutoConfiguration,\
+        org.springframework.boot.autoconfigure.jdbc.XADataSourceAutoConfiguration,\
+        org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration,\
+        org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration,\
+        org.springframework.boot.autoconfigure.security.SecurityFilterAutoConfiguration,\
+        org.springframework.boot.autoconfigure.web.DispatcherServletAutoConfiguration,\
+        org.springframework.boot.autoconfigure.web.EmbeddedServletContainerAutoConfiguration,\
+        org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration,\
+    TODO: Figure out how to override autoconfigure settings
+
+Spring Boot Starters
+    spring-boot-starter-web: Recommended for web services and REST APP
+    Each starter has many dependencies to configure, too. For example, in spring-boot-starter:
+        - spring-boot
+        - spring-boot-autoconfigure
+        - spring-boot-starter-logging
+        - javax.annotation-api
+        - spring-core
+        - snakeyaml
+    Types of starters:
+    spring-boot-starter
+        -aop -cache -jdbc -... [And many more other]
+
+Actuator + Hal Browser:
+    Monitoring functionality
+    Keep record of service calls & logs
+
+Spring Boot Developer Tools
+    Like the function of "Hot Server"
+    Meanwhile, faster restart of the server. [Not working in IntelliJ]
+

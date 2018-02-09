@@ -20,9 +20,9 @@ Test in Spring:
         - Only mock those data flows in.
     Performance:
         Mockito is faster than JUnit
-        
+
 Libraries:
-    TODO: Libraries[playJson; slf4j; JUnit; Mockito]
+    TODO: Libraries[playJson; slf4j; JUnit; Mockito; Jooq]
     slf4j:
         <dependency>
             <groupId>org.slf4j</groupId>
