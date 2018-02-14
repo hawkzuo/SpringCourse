@@ -87,11 +87,13 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--Checkings -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+		<!-- Won't work on MAC -->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-actuator</artifactId>-->
+			<!--<scope>compile</scope>-->
+		<!--</dependency>-->
+
 		<!--Hal Browser for showing routes -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
