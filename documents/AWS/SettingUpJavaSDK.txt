@@ -1,0 +1,9 @@
+Basic:
+    Add Maven Dependency Management & Dependencies
+    Java Requirement >= 1.6
+    Create Credentials in folder ~/.aws/credentials
+
+S3:
+    Use File/FileInputStream to avoid ResetExceptions
+
+

@@ -21,7 +21,7 @@ public class SampleController {
     public List<LineItem> getAllLineItems() {
         // Calling a Service then return values
         LOGGER.info("Begin processing getAllLineItems call.");
-        List<LineItem> response = Collections.singletonList(new LineItem(3, 12, "Cablesd", 100));
+        List<LineItem> response = Collections.singletonList(new LineItem(3, 12, "Cable", 100));
         LOGGER.info("Finished processing getAllLineItems call.");
         return response;
     }

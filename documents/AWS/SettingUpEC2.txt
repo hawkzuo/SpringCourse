@@ -1,0 +1,20 @@
+https://aws.amazon.com/free/
+
+1. Create an IAM User Administrator, then login as Administrator instead of root.
+Assign it in group "Administrators", who have AdministratorAccess privileges.
+
+2. Generate key pair to log onto the EC2 instance
+Create key pair for each region:
+    - Goto EC2
+    - Network & Security -> Key Pairs
+        Key Pair Name: tamu-key-pair-useast2
+        This will generate an RSA private key file *.pem
+        On Linux/Mac, setup only self can read this file:  *.pem
+
+3. VPC & Security Group is needed || default.
+    Setup ssh protocol InBound IP address
+
+4. Launch => Request limits exceeded [in N. Virginia]
+    Modify the Region to Ohio => Worked
+5. Connecting via Putty with private_key
+
