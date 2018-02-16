@@ -1,4 +1,4 @@
-package edu.tamu.amos.spring.springbootproject;
+package edu.tamu.amos.spring.springbootproject.launch;
 
 /**
  * Created by Amos on 2018/2/8.

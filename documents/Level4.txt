@@ -44,5 +44,7 @@ Actuator + Hal Browser:
 
 Spring Boot Developer Tools
     Like the function of "Hot Server"
-    Meanwhile, faster restart of the server. [Not working in IntelliJ]
-
+    Meanwhile, faster restart of the server.
+    The devtools works via matching URLs for reloading:
+      [file:~/Workspaces/Spring/first-spring-project/target/classes/]
+    To make it work, must re-build the system.
