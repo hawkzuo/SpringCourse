@@ -6,6 +6,7 @@ import edu.tamu.amos.spring.xml.XmlPersonDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.annotation.PostConstruct;
@@ -30,7 +31,7 @@ public class XmlSpringApplication {
 	public static void main(String[] args) {
 
 //		ConfigurableApplicationContext applicationContext = SpringApplication.run(FirstSpringProjectApplication.class, args);
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("XmlBeans.xml");
+		ConfigurableApplicationContext applicationContext = new ClassPathXmlApplicationContext("XmlBeans.xml");
 
 
         BinarySearchExample binarySearch = applicationContext.getBean(BinarySearchExample.class);
@@ -46,7 +47,7 @@ public class XmlSpringApplication {
 		logger.info("PersonDao: {}, JDBC: {}", personDao, personDao.getXmlJdbcConnection());
 		logger.info("PersonDao1: {}, JDBC: {}", personDao1, personDao1.getXmlJdbcConnection());
 
-
+		applicationContext.registerShutdownHook();
 
 	}
 }

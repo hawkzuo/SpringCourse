@@ -13,7 +13,7 @@
 
     <bean id="xmlJdbcConnection" class="edu.tamu.amos.spring.xml.XmlJdbcConnection"/>
 
-    <!--Load these objects here-->
+    <!--Load these objects here via annotations version -->
     <context:component-scan base-package="edu.tamu.amos.spring.firstspringproject.level1"/>
 
     <!--Or explicitly define beans here-->

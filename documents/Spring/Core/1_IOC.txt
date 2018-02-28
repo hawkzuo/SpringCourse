@@ -1,0 +1,105 @@
+1. IOC container
+    "<=": depends on
+    Main Package: org.springframework.beans  org.springframework.context
+    BeanFactory interface << ApplicationContext, ConfigurableApplicationContext, ..
+    Focus on ApplicationContext
+
+    Types of ApplicationContext:
+        - AnnotationConfigApplicationContext
+        - ClassPathXmlApplicationContext [FileSystemXmlApplicationContext]
+
+    Load the config metadata from Java CLASSPATH <= Resources Abstraction
+
+    A. Beans Definition
+        [Autowiring Collaborators; Method Injection] => skipped
+        public ExampleBean(int years, String ultimateAnswer) {
+            this.years = years;
+            this.ultimateAnswer = ultimateAnswer;
+        }
+        <beans>
+            <!-- Equivalent to: <import resource="XmlBeans.xml"/> -->
+            <import resource="classpath*:XmlBeans.xml"/>
+
+            <!--Should be in a "resources" location below the location of the importing file-->
+            <import resource="resources/messageSource.xml"/>
+
+            <bean id="uniqueIdentifier" class="classReference"></bean>
+
+            <!--Inner Static Class Example-->
+            <bean id="innerClassName" class="com.example.Foo$Bar"></bean>
+
+            <bean id="exampleBean" class="examples.ExampleBean">
+                <constructor-arg type="int" value="7500000"/>
+                <constructor-arg type="java.lang.String" value="42"/>
+                <!-- OR -->
+                <constructor-arg index="0" value="7500000"/>
+                <constructor-arg index="1" value="42"/>
+                <!-- OR -->
+                <constructor-arg name="years" value="7500000"/>
+                <constructor-arg name="ultimateAnswer" value="42"/>
+            </bean>
+
+            <!--Properties: Straight Values-->
+            <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+                <!-- results in a setDriverClassName(String) call -->
+                <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mydb"/>
+                <property name="username" value="root"/>
+                <property name="password" value="masterkaoli"/>
+            </bean>
+
+            <!--Inner Beans: Anonymous, "scope" ignored, no injection allowed -->
+            <!--Lazy Initialization: create a bean instance when it is first requested, rather than default at startup -->
+            <!--References: Add a dependency bean -->
+            <bean id="outer" class="..." lazy-init="true">
+                <!-- instead of using a reference to a target bean, simply define the target bean inline -->
+                <property name="target">
+                    <bean class="com.example.Person"> <!-- this is the inner bean -->
+                        <property name="name" value="Fiona Apple"/>
+                        <property name="age" value="25"/>
+                    </bean>
+                </property>
+            </bean>
+        </beans>
+
+        Use of ApplicationContext:
+            ApplicationContext context = new ClassPathXmlApplicationContext("services.xml", "daos.xml");
+            PetStoreService service = context.getBean("petStore", PetStoreService.class);
+
+    B. Dependency Injection:
+        Constructor-based Injection for mandatory components, while Setter-based Injection for optional components
+        Construction Phase: Each Bean's Dependents will be constructed before itself being constructed. TP-sort.
+
+    C. Bean Scope:
+        singleton => Default
+        prototype => Multiple instances
+        request, session, application, websocket => web-aware Spring ApplicationContext
+
+    D. Bean Lifecycle:
+        @PostConstruct @PreDestroy callbacks
+
+    E. Annotation-based Configuration:
+        @Component[including @Repository, @Service, @Controller] @Scope @Qualifier @Primary
+        @Autowired
+        [@Configuration @ComponentScan(basePackages = "org.example", includeFilters = , excludeFilters = )]
+        Equivalent XML:
+            <context:component-scan base-package="org.example">
+                <context:include-filter type="regex"
+                        expression=".*Stub.*Repository"/>
+                <context:exclude-filter type="annotation"
+                        expression="org.springframework.stereotype.Repository"/>
+            </context:component-scan>
+
+    F. Java-based Configuration:
+        @Autowired -> @javax.inject.Inject;
+        @Component -> @javax.inject.Named; @ManagedBean
+        @Scope("singleton") -> @Singleton
+        @Qualifier -> @Qualifier / @Named
+        @Value @Required @Lazy -> NULL
+        ObjectFactory -> Provider
+
+    G. Additional capabilities of the ApplicationContext
+        ApplicationContext extends MessageSource;
+        Standard and custom events;
+        Convenient access to low-level resources (extends ResourceLoader)[provide default location to load resources];
+        Deploying a Spring ApplicationContext as a Java EE RAR file
