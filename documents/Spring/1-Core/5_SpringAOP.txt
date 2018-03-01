@@ -1,0 +1,172 @@
+AOP = Aspect Oriented Programming
+    A little like FP, generic some operations("aspects") to be executed on
+    certain group of situations [specific package / specific operation...].
+    Like Lifecycle callbacks.
+
+    Join point: a point during the execution of a program,
+        such as the execution of a method or the handling of an exception.
+        In Spring AOP, a join point always represents a METHOD EXECUTION.
+    Pointcut: a predicate that matches join points.
+        Advice is associated with a pointcut expression and runs at any
+        join point matched by the pointcut (for example, the execution of
+        a method with a certain name). The concept of join points as
+        matched by pointcut expressions is central to AOP,
+        and Spring uses the AspectJ pointcut expression language by default.
+
+    B. Examples on defining AspectJ Pointcut:
+
+        @Pointcut("execution(public * *(..))")
+        private void anyPublicOperation() {} // Match any public method
+
+        @Pointcut("within(com.xyz.someapp.trading..*)")
+        private void inTrading() {} // Match any method within 'trading' package
+
+        @Pointcut("anyPublicOperation() && inTrading()")
+        private void tradingOperation() {} // Support "&&" "||" "!" logical operators
+
+    // the execution of any public method
+    execution(public * *(..))
+    // the execution of any method with a name beginning with "set"
+    execution(* set*(..))
+    // the execution of any method defined by the AccountService interface
+    execution(* com.xyz.service.AccountService.*(..))
+    // the execution of any method defined in the service package:
+    execution(* com.xyz.service.*.*(..))
+    // the execution of any method defined in the service package or a sub-package:
+    execution(* com.xyz.service..*.*(..))
+
+    // any join point (method execution only) within the service package:
+    within(com.xyz.service.*)
+    // any join point  within the service package or a sub-package:
+    within(com.xyz.service..*)
+    // any join point where the proxy implements the AccountService interface:
+    this(com.xyz.service.AccountService)
+
+    // any join point where the target object implements the AccountService interface:
+    target(com.xyz.service.AccountService)
+    // any join point which takes a single parameter, and where the argument passed at runtime is Serializable
+    args(java.io.Serializable)
+
+    // any join point on a Spring bean named tradeService
+    bean(tradeService)
+    // any join point on Spring beans having names that match the wildcard expression *Service:
+    bean(*Service)
+
+    C. Advice
+        @Before @AfterReturning @AfterThrowing @After @Around
+        Function Signature supports binding the operation's return parameter and passing extra params into it.
+
+    @Aspect
+    public class AdviceExample {
+
+        @Before("com.xyz.myapp.SystemArchitecture.dataAccessOperation()")
+        public void doAccessCheck() {
+            // ...
+        }
+
+    }
+
+
+    D. Full Config Example:
+        @Configuration
+        @EnableAspectJAutoProxy
+        public class AppConfig {
+
+        }
+
+        public class ConcurrentOperationExecutor implements Ordered {
+
+            private static final int DEFAULT_MAX_RETRIES = 2;
+
+            private int maxRetries = DEFAULT_MAX_RETRIES;
+            private int order = 1;
+
+            public void setMaxRetries(int maxRetries) {
+                this.maxRetries = maxRetries;
+            }
+
+            public int getOrder() {
+                return this.order;
+            }
+
+            public void setOrder(int order) {
+                this.order = order;
+            }
+
+            public Object doConcurrentOperation(ProceedingJoinPoint pjp) throws Throwable {
+                int numAttempts = 0;
+                PessimisticLockingFailureException lockFailureException;
+                do {
+                    numAttempts++;
+                    try {
+                        return pjp.proceed();
+                    }
+                    catch(PessimisticLockingFailureException ex) {
+                        lockFailureException = ex;
+                    }
+                } while(numAttempts <= this.maxRetries);
+                throw lockFailureException;
+            }
+
+        }
+
+        For XML
+        <aop:aspectj-autoproxy/>
+
+AOP API:
+
+public interface Pointcut {
+
+    ClassFilter getClassFilter();
+
+    MethodMatcher getMethodMatcher();
+
+}
+
+public interface ClassFilter {
+
+    boolean matches(Class clazz);
+}
+
+public interface MethodMatcher {
+
+    boolean matches(Method m, Class targetClass);
+
+    boolean isRuntime();
+
+    boolean matches(Method m, Class targetClass, Object[] args);
+}
+
+class TestStaticPointcut extends StaticMethodMatcherPointcut {
+
+    public boolean matches(Method m, Class targetClass) {
+        // return true if custom criteria match
+    }
+}
+
+public interface MethodInterceptor extends Interceptor {
+
+    Object invoke(MethodInvocation invocation) throws Throwable;
+}
+
+public interface MethodBeforeAdvice extends BeforeAdvice {
+
+    void before(Method m, Object[] args, Object target) throws Throwable;
+}
+
+// .......
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

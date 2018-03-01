@@ -16,6 +16,13 @@ public class SampleController {
 
     private final Logger LOGGER =  LoggerFactory.getLogger(SampleController.class);
 
+//    private final AWSS3ClientImpl s3Client;
+//
+//    @Autowired
+//    public SampleController(AWSS3ClientImpl s3Client) {
+//        this.s3Client = s3Client;
+//    }
+
     @GetMapping("/items")
     public List<LineItem> getAllLineItems() {
         // Calling a Service then return values
